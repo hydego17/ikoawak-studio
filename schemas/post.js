@@ -7,11 +7,13 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
+      validation: Rule => Rule.required().min(10).max(80)
     },
     {
       name: 'subtitle',
       title: 'Subtitle',
       type: 'text',
+      validation: Rule => Rule.max(150).error(`Maksimal 150 karakter ya gaess!!!`)
     },
     {
       name: 'slug',
@@ -21,12 +23,14 @@ export default {
         source: 'title',
         maxLength: 96,
       },
+      validation: Rule => Rule.required()
     },
     {
       name: 'author',
       title: 'Author',
       type: 'reference',
       to: {type: 'author'},
+      validation: Rule => Rule.required()
     },
     {
       name: 'mainImage',
@@ -41,11 +45,13 @@ export default {
       title: 'Categories',
       type: 'array',
       of: [{type: 'reference', to: {type: 'category'}}],
+      validation: Rule => Rule.required()
     },
     {
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
+      validation: Rule => Rule.required()
     },
     {
       name: 'body',
