@@ -10,8 +10,8 @@ export default {
       },
       {
         name: 'subtitle',
-        title: 'Title',
-        type: 'string'
+        title: 'Subtitle',
+        type: 'text'
       },
       {
         name: 'image',
