@@ -1,3 +1,5 @@
+import { formatDate } from '../lib/date';
+
 export default {
   name: 'post',
   title: 'Post',
@@ -7,13 +9,14 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: Rule => Rule.required().min(10).max(80)
+      validation: (Rule) => Rule.required().min(10).max(80),
     },
     {
       name: 'subtitle',
       title: 'Subtitle',
       type: 'text',
-      validation: Rule => Rule.max(150).error(`Maksimal 150 karakter ya gaess!!!`)
+      validation: (Rule) =>
+        Rule.max(150).error(`Maksimal 150 karakter ya gaess!!!`),
     },
     {
       name: 'slug',
@@ -23,14 +26,14 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'author',
       title: 'Author',
       type: 'reference',
-      to: {type: 'author'},
-      validation: Rule => Rule.required()
+      to: { type: 'author' },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'mainImage',
@@ -44,28 +47,28 @@ export default {
       name: 'categories',
       title: 'Categories',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'category'}}],
-      validation: Rule => Rule.required()
+      of: [{ type: 'reference', to: { type: 'category' } }],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
-      validation: Rule => Rule.required()
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'body',
       title: 'Body',
-      type: "array",
+      type: 'array',
       of: [
-        { type: "block" },
+        { type: 'block' },
         {
-          type: "image",
+          type: 'image',
           fields: [
             {
-              title: "Description",
-              name: "alt",
-              type: "text",
+              title: 'Description',
+              name: 'alt',
+              type: 'text',
               options: {
                 isHighlighted: true,
               },
@@ -78,18 +81,32 @@ export default {
       ],
     },
   ],
+  orderings: [
+    {
+      title: 'Published Date, New',
+      name: 'publishedAtDesc',
+      by: [{ field: 'publishedAt', direction: 'desc' }],
+    },
+    {
+      title: 'Published Date, Old',
+      name: 'publishedAtAsc',
+      by: [{ field: 'publishedAt', direction: 'asc' }],
+    },
+  ],
 
   preview: {
     select: {
       title: 'title',
       author: 'author.name',
       media: 'mainImage',
+      date: 'publishedAt',
     },
     prepare(selection) {
-      const {author} = selection
+      const { date, author } = selection;
+
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`,
-      })
+        subtitle: author && `${formatDate(date)} - ${author}`,
+      });
     },
   },
-}
+};
