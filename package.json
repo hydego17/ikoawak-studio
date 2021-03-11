@@ -14,12 +14,12 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.3.8",
+    "@sanity/base": "^2.6.0",
     "@sanity/components": "^2.2.6",
-    "@sanity/core": "^2.3.8",
-    "@sanity/default-layout": "^2.3.8",
+    "@sanity/core": "^2.6.1",
+    "@sanity/default-layout": "^2.6.0",
     "@sanity/default-login": "^2.2.6",
-    "@sanity/desk-tool": "^2.3.8",
+    "@sanity/desk-tool": "^2.6.1",
     "@sanity/production-preview": "^2.2.6",
     "@sanity/vision": "^2.2.6",
     "luxon": "^1.26.0",
@@ -28,6 +28,6 @@
     "react-dom": "^17.0"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.3.8"
+    "@sanity/cli": "^2.6.0"
   }
 }
