@@ -12,6 +12,14 @@ export default {
         name: 'description',
         title: 'Description',
         type: 'blockContent',
+      },
+      {
+        name: 'image',
+        title: 'Image',
+        type: 'image',
+        options: {
+          hotspot: true,
+        },
       }, 
     ],
   }
