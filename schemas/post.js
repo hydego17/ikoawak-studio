@@ -9,7 +9,11 @@ export default {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required().min(10).max(80),
+      validation: (Rule) =>
+        Rule.required()
+          .min(10)
+          .max(120)
+          .error(`Harus ada title dan maksimal 120 karakter ya gaess!!!`),
     },
     {
       name: 'subtitle',
